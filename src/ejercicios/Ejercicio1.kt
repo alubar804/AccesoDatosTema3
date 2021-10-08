@@ -8,7 +8,6 @@ import java.util.*
 
     fun main(args: Array<String>){
         val f = DataInputStream(FileInputStream("Rutes.dat"))
-
         while (f.available() > 0) {
             System.out.println("Ruta: " + f.readUTF())
             System.out.println("Desnivell: " + f.readInt())
