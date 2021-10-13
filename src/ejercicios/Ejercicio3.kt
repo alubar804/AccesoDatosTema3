@@ -26,23 +26,23 @@ fun main(args: Array<String>){
             ruta.appendChild(nom)
 
             val des = doc.createElement("desnivell")
-            des.setTextContent(e.desnivell.toString())
+            des.textContent = e.desnivell.toString()
             ruta.appendChild(des)
 
             val desAC = doc.createElement("desnivellAcumulat")
-            desAC.setTextContent(e.desnivellAcumulat.toString())
+            desAC.textContent = e.desnivellAcumulat.toString()
             ruta.appendChild(desAC)
 
             val punts = doc.createElement("punts")
-            for (i in 0..e.size()-1){
+            for (i in 0 until e.size()){
                 val punt = doc.createElement("punt");
-                punt.setAttribute("num", Integer.toString(i+1))
+                punt.setAttribute("num", (i + 1).toString())
                 val nomPunt = doc.createElement("nom");
-                nomPunt.setTextContent(e.getPuntNom(i).toString())
+                nomPunt.textContent = e.getPuntNom(i).toString()
                 val latitud = doc.createElement("latitud");
-                latitud.setTextContent(e.getPuntLatitud(i).toString())
+                latitud.textContent = e.getPuntLatitud(i).toString()
                 val longitud = doc.createElement("longitud");
-                longitud.setTextContent(e.getPuntLongitud(i).toString())
+                longitud.textContent = e.getPuntLongitud(i).toString()
 
                 punt.appendChild(nomPunt)
                 punt.appendChild(latitud)

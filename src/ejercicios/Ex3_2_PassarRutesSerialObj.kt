@@ -11,10 +11,7 @@ fun main(args: Array<String>){
     var ruta = Ruta("",0,0,lista)
     //TODO en la segunda vuelta explota
     while (f.available() > 0) {
-        ruta =Ruta (f.readUTF(),
-            f.readInt(),
-            f.readInt(),
-            lista)
+        ruta =Ruta (f.readUTF(), f.readInt(), f.readInt(), lista)
         val punts = f.readInt()
         for (i in 0..punts){
             var name = f.readUTF()
