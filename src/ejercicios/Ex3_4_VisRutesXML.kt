@@ -3,6 +3,8 @@ import javax.swing.*
 import java.awt.*
 import org.w3c.dom.Document
 import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.w3c.dom.NodeList
 import java.io.FileInputStream
 import java.io.ObjectInputStream
 import javax.xml.parsers.DocumentBuilderFactory
@@ -13,7 +15,8 @@ class Finestra : JFrame() {
     init {
 
         var doc =  DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("Ruta.xml")
-        var arrel = doc.createElement ("rutes")
+        val arrel = doc.getDocumentElement()  // apuntarà a l'element arrel
+        val llista = arrel.getElementsByTagName("ruta")
 
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         setTitle("Punts d'una ruta")
@@ -26,10 +29,14 @@ class Finestra : JFrame() {
         add(panell2,BorderLayout.CENTER)
 
         val llistaRutes = arrayListOf<String>()
-        var rutalista = doc.getElementsByTagName("ruta")
 
-        // sentències per a omplir l'ArrayList anterior amb el nom de les rutes
 
+//         sentències per a omplir l'ArrayList anterior amb el nom de les rutes
+        for (i in 0 until llista.getLength()){
+            val el = llista.item(i) as Element
+            var nombreRuta =el.getElementsByTagName("nom").item(0).getChildNodes().item(0).getNodeValue()
+            llistaRutes.add(nombreRuta)
+        }
         val combo = JComboBox(llistaRutes.toArray())
         panell1.add(combo)
 
@@ -50,3 +57,4 @@ fun main(args: Array<String>) {
         Finestra().isVisible = true
     }
 }
+

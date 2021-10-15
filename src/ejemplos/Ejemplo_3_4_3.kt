@@ -11,3 +11,11 @@ fun main(args: Array<String>){
     println(arrel.getNodeName())			// torna el nom de l'element. Ens dirà oferta
     println(arrel.getNodeValue())			// torna el valor de l'element. Com és un element que conté altres elements, el valor és null
 }
+//        var rutalista = arrel.getElementsByTagName("ruta")
+
+// sentències per a omplir l'ArrayList anterior amb el nom de les rutes
+//        for (i in 0 until rutalista.length){
+//            val el = rutalista.item(i) as Element
+//            var nombreRuta =el.getElementsByTagName("nom").item(0).getNodeValue()
+//            llistaRutes.add(nombreRuta)
+//        }
