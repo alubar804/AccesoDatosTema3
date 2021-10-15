@@ -10,7 +10,9 @@ fun main(args: Array<String>){
     try {
             while (true) {
                 val e = f.readObject() as Ruta
+                println(e.nom)
                 e.mostrarRuta()
+
             }
 
     } catch (eof: EOFException) {

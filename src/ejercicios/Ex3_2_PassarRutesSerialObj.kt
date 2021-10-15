@@ -7,18 +7,20 @@ import java.util.*
 fun main(args: Array<String>){
     val f = DataInputStream(FileInputStream("Rutes.dat"))
     val g = ObjectOutputStream(FileOutputStream("Rutes.obj"))
-    var lista = mutableListOf<PuntGeo>()
-    var ruta = Ruta("",0,0,lista)
-    //TODO en la segunda vuelta explota
+
     while (f.available() > 0) {
-        ruta =Ruta (f.readUTF(), f.readInt(), f.readInt(), lista)
+        var lista = mutableListOf<PuntGeo>()
+        var nameRuta =f.readUTF()
+        var desnivellRuta=f.readInt()
+        var desnivellAcoRuta=f.readInt()
         val punts = f.readInt()
-        for (i in 0..punts){
+        for (i in 0..punts-1){
             var name = f.readUTF()
             var cooord= Coordenades(f.readDouble(),f.readDouble())
             var punticoGeo=PuntGeo(name,cooord)
-            ruta.addPunt(punticoGeo)
+            lista.add(punticoGeo)
         }
+        var ruta =Ruta(nameRuta,desnivellRuta,desnivellAcoRuta,lista)
         ruta.mostrarRuta()
         g.writeObject(ruta)
     }
