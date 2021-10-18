@@ -1,12 +1,7 @@
 package ejercicios
-import javax.swing.*
-import java.awt.*
-import org.w3c.dom.Document
 import org.w3c.dom.Element
-import org.w3c.dom.Node
-import org.w3c.dom.NodeList
-import java.io.FileInputStream
-import java.io.ObjectInputStream
+import java.awt.*
+import javax.swing.*
 import javax.xml.parsers.DocumentBuilderFactory
 
 
@@ -30,8 +25,6 @@ class Finestra : JFrame() {
 
         val llistaRutes = arrayListOf<String>()
 
-
-//         sentències per a omplir l'ArrayList anterior amb el nom de les rutes
         for (i in 0 until llista.getLength()){
             val el = llista.item(i) as Element
             var nombreRuta =el.getElementsByTagName("nom").item(0).getChildNodes().item(0).getNodeValue()
@@ -47,6 +40,23 @@ class Finestra : JFrame() {
         combo.addActionListener{
             // accions quan s'ha seleccionat un element del combobox,
             // i que han de consistir en omplir el JTextArea
+            ///TODO: esto peta, no debug que rompe el pc
+            val comboNum = combo.selectedIndex
+            val comboString: String = combo.getSelectedItem().toString()
+            val raiz = llista.item(comboNum)
+            val llista = arrel.getElementsByTagName("punt")
+            val puntos = llista
+            val llistaPunts = arrayListOf<String>()
+
+            for (i in 0 until llista.getLength()){
+                val el = llista.item(i) as Element
+                val abuelo=el.parentNode.parentNode.childNodes.item(0).getChildNodes().item(0).getNodeValue().toString()
+                if (abuelo.equals(comboString)) {
+                    val nombreRuta = el.getElementsByTagName("nom").item(0).getChildNodes().item(0).getNodeValue()
+                    llistaPunts.add(nombreRuta)
+                }
+            }
+            area.text=llistaPunts.toString()
 
         }
     }
