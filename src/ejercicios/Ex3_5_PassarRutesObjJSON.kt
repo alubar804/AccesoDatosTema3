@@ -16,9 +16,11 @@ fun main(args: Array<String>) {
 //    var  = mutableListOf<PuntGeo>()
 //    var  = mutableListOf<PuntGeo>()
 
-    val raiz = JSONArray()
+    val raiz = JSONObject()
+    val rutas = JSONArray()
+    raiz.put("rutes",rutas)
     try {
-        val rutas = JSONArray()
+
 
         var x = 0
         while (true) {
@@ -46,8 +48,8 @@ fun main(args: Array<String>) {
             }
             ruta.put("ruta",carac)
             rutas.put(ruta)
-            raiz.put(rutas)
-            f.write(raiz.toString(4))
+
+
             x++
 
         }
@@ -55,7 +57,7 @@ fun main(args: Array<String>) {
     } catch (eof: EOFException) {
         inp.close()
     }
-
+    f.write(raiz.toString(4))
 
 
     inp.close()

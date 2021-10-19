@@ -40,23 +40,19 @@ class Finestra : JFrame() {
         combo.addActionListener{
             // accions quan s'ha seleccionat un element del combobox,
             // i que han de consistir en omplir el JTextArea
-            ///TODO: esto peta, no debug que rompe el pc
-            val comboNum = combo.selectedIndex
-            val comboString: String = combo.getSelectedItem().toString()
-            val raiz = llista.item(comboNum)
-            val llista = arrel.getElementsByTagName("punt")
-            val puntos = llista
-            val llistaPunts = arrayListOf<String>()
-
-            for (i in 0 until llista.getLength()){
-                val el = llista.item(i) as Element
-                val abuelo=el.parentNode.parentNode.childNodes.item(0).getChildNodes().item(0).getNodeValue().toString()
-                if (abuelo.equals(comboString)) {
-                    val nombreRuta = el.getElementsByTagName("nom").item(0).getChildNodes().item(0).getNodeValue()
-                    llistaPunts.add(nombreRuta)
-                }
+            //TODO: esto peta, no debug que rompe el pc
+            val seleccion = combo.getSelectedIndex()
+            val ruta = llista.item(seleccion) as Element
+            val punt = ruta.getElementsByTagName("punt")
+            var cadena = ""
+            for (i in 0..punt.length-1) {
+                val el = punt.item(i) as Element
+                val nom = el.getElementsByTagName("nom").item(0).getChildNodes().item(0).nodeValue
+                val latitud = el.getElementsByTagName("latitud").item(0).getChildNodes().item(0).nodeValue
+                val longitud = el.getElementsByTagName("longitud").item(0).getChildNodes().item(0).nodeValue
+                cadena += "$nom ($latitud $longitud)\n"
             }
-            area.text=llistaPunts.toString()
+            area.text = cadena
 
         }
     }
